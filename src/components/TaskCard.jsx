@@ -1,5 +1,5 @@
 import { CalendarDays, Check, Pencil, Trash2 } from 'lucide-react';
-import { CATEGORY_CLASS, PRIORITY_META, dueState, formatDueDate } from '../lib/taskMeta';
+import { CATEGORY_CLASS, PRIORITY_META, dueState, formatDueDate } from '../data/sampleTasks';
 
 export default function TaskCard({ task, onToggle, onEdit, onDelete }) {
   const done = task.status === 'completed';

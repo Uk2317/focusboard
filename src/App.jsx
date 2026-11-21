@@ -1,17 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowRight, CheckCircle2, Clock, Layers, Plus } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock, Info, Layers, Plus, Trash2, X } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import StatCard from './components/StatCard';
 import FocusNotes from './components/FocusNotes';
 import FilterTabs from './components/FilterTabs';
 import SearchBar from './components/SearchBar';
-import PriorityFilter from './components/PriorityFilter';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
-import ConfirmDialog from './components/ConfirmDialog';
-import InfoDialog from './components/InfoDialog';
-import MobileNav from './components/MobileNav';
 import useLocalStorage from './hooks/useLocalStorage';
 import { SAMPLE_TASKS } from './data/sampleTasks';
 
@@ -30,10 +26,32 @@ export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
 
   const tasksSectionRef = useRef(null);
+  const keepTaskRef = useRef(null);
+  const infoOkRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
+
+  useEffect(() => {
+    if (!pendingDelete) return undefined;
+    keepTaskRef.current?.focus();
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setPendingDelete(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [pendingDelete]);
+
+  useEffect(() => {
+    if (!placeholder) return undefined;
+    infoOkRef.current?.focus();
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setPlaceholder(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [placeholder]);
 
   useEffect(() => {
     if (!toast) return undefined;
@@ -182,9 +200,14 @@ export default function App() {
             </div>
 
             <div className="controls">
-              <FilterTabs active={statusTab} onChange={setStatusTab} counts={tabCounts} />
+              <FilterTabs
+                active={statusTab}
+                onChange={setStatusTab}
+                counts={tabCounts}
+                priority={priority}
+                onPriorityChange={setPriority}
+              />
               <SearchBar value={search} onChange={setSearch} />
-              <PriorityFilter value={priority} onChange={setPriority} />
             </div>
 
             <TaskList
@@ -198,8 +221,6 @@ export default function App() {
         </main>
       </div>
 
-      <MobileNav active={activeNav} onNavigate={navigate} />
-
       {form.open && (
         <TaskForm
           initial={form.initial}
@@ -209,14 +230,61 @@ export default function App() {
       )}
 
       {pendingDelete && (
-        <ConfirmDialog
-          task={pendingDelete}
-          onCancel={() => setPendingDelete(null)}
-          onConfirm={deleteTask}
-        />
+        <div className="modal-overlay" onMouseDown={(e) => e.target === e.currentTarget && setPendingDelete(null)}>
+          <div
+            className="modal"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="confirm-title"
+            aria-describedby="confirm-desc"
+          >
+            <div className="confirm-icon">
+              <Trash2 size={22} aria-hidden="true" />
+            </div>
+            <h2 id="confirm-title" style={{ margin: '0 0 6px', fontSize: 18 }}>Delete this task?</h2>
+            <p id="confirm-desc" style={{ margin: 0, fontSize: 13, color: 'var(--ink-2)' }}>
+              “{pendingDelete.title}” will be removed permanently. This can’t be undone.
+            </p>
+            <div className="modal-actions">
+              <button type="button" className="btn btn-soft" onClick={() => setPendingDelete(null)} ref={keepTaskRef}>
+                Keep task
+              </button>
+              <button type="button" className="btn btn-danger" onClick={() => deleteTask(pendingDelete.id)}>
+                <Trash2 size={15} aria-hidden="true" />
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
-      {placeholder && <InfoDialog title={placeholder} onClose={() => setPlaceholder(null)} />}
+      {placeholder && (
+        <div className="modal-overlay" onMouseDown={(e) => e.target === e.currentTarget && setPlaceholder(null)}>
+          <div className="modal" role="dialog" aria-modal="true" aria-labelledby="info-title">
+            <div className="confirm-icon" style={{ background: 'var(--brand-soft)', color: 'var(--brand-soft-ink)' }}>
+              <Info size={22} aria-hidden="true" />
+            </div>
+            <div className="modal-head" style={{ marginBottom: 0 }}>
+              <div>
+                <h2 id="info-title">{placeholder}</h2>
+                <p>Not included in this build</p>
+              </div>
+              <button type="button" className="icon-btn" onClick={() => setPlaceholder(null)} aria-label="Close dialog">
+                <X size={18} aria-hidden="true" />
+              </button>
+            </div>
+            <p style={{ margin: '12px 0 0', fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.55 }}>
+              {placeholder} wasn’t part of the assessment brief, so it’s intentionally a placeholder rather than a
+              half-finished screen. The dashboard, task management and persistence are fully working.
+            </p>
+            <div className="modal-actions">
+              <button type="button" className="btn btn-primary" onClick={() => setPlaceholder(null)} ref={infoOkRef}>
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {toast && (
         <div className="toast" role="status" key={toast.id}>

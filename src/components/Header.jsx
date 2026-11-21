@@ -1,5 +1,5 @@
 import { ChevronRight, Moon, Sun } from 'lucide-react';
-import Logo from './Logo';
+import logo from '../assets/logo.svg';
 
 export default function Header({ theme, onToggleTheme }) {
   const isDark = theme === 'dark';
@@ -7,7 +7,7 @@ export default function Header({ theme, onToggleTheme }) {
   return (
     <header className="topbar">
       <div className="topbar-logo" aria-hidden="true">
-        <Logo />
+        <img className="brand-mark" src={logo} alt="FocusBoard logo" width="64" height="64" />
         <span>FocusBoard</span>
       </div>
 

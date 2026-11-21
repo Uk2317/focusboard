@@ -56,7 +56,7 @@ Node 20+ recommended.
   (private mode/quota) are swallowed so the app keeps working in-memory.
 - **Completed sink to the bottom, rest sorted by nearest due date.** Two-line rule in
   `App.jsx` (`visibleTasks`). Keeps the work queue actionable without extra UI.
-- **"Due soon" = not completed and due within 3 days** (in `src/lib/taskMeta.js`).
+- **"Due soon" = not completed and due within 3 days** (in `src/data/sampleTasks.js`).
   Judgment call; the Figma shows amber "Due soon" chips but doesn't define the window.
 - **Mobile-first CSS** with `min-width` breakpoints (620 / 760 / 1024 px). Sidebar appears
   only at ≥1024px; below that a fixed bottom navigation (Overview / Tasks / Calendar / Settings)
@@ -113,22 +113,17 @@ Manual pass still recommended before submission (see AI_USAGE.md).
 
 ```
 src/
-  components/   Sidebar, Header, Logo, StatCard, FocusNotes, TaskList,
-                TaskCard, TaskForm, SearchBar, FilterTabs, PriorityFilter,
-                ConfirmDialog, InfoDialog, MobileNav
-  data/         sampleTasks.js (seed + status/priority/category constants)
-  hooks/        useLocalStorage.js
-  lib/          taskMeta.js (labels, due-date math)
   assets/       logo.svg
-  App.jsx       state, derived stats, filters, composition
-  index.css     mobile-first styles + dark theme variables
+  components/   Sidebar.jsx, Header.jsx, StatCard.jsx, FocusNotes.jsx,
+                TaskList.jsx, TaskCard.jsx, TaskForm.jsx, SearchBar.jsx,
+                FilterTabs.jsx
+  data/         sampleTasks.js
+  hooks/        useLocalStorage.js
+  App.jsx
+  main.jsx
+  index.css
 screenshots/    desktop, tablet, mobile, dark mode, create modal
 ```
-
-Component naming follows the recommended structure from the reference material
-(Sidebar, Header, StatCard, FocusNotes, TaskList, TaskCard, TaskForm, SearchBar,
-FilterTabs) plus the extras the brief requires: PriorityFilter, ConfirmDialog,
-InfoDialog and the mobile MobileNav.
 
 ## Deployment
 

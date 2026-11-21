@@ -1,5 +1,5 @@
 import { CalendarDays, LayoutGrid, ListTodo, Settings } from 'lucide-react';
-import Logo from './Logo';
+import logo from '../assets/logo.svg';
 
 const NAV = [
   { id: 'overview', label: 'Overview', icon: LayoutGrid },
@@ -8,13 +8,21 @@ const NAV = [
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
+const MOBILE_NAV = [
+  { id: 'overview', label: 'Overview', icon: LayoutGrid },
+  { id: 'tasks', label: 'Tasks', icon: ListTodo },
+  { id: 'calendar', label: 'Calendar', icon: CalendarDays },
+  { id: 'settings', label: 'Settings', icon: Settings },
+];
+
 export default function Sidebar({ active, onNavigate, completedCount, weeklyTarget = 10 }) {
   const progress = Math.min(100, Math.round((completedCount / weeklyTarget) * 100));
 
   return (
+    <>
     <aside className="sidebar" aria-label="Primary">
       <a className="brand" href="#top" onClick={(e) => { e.preventDefault(); onNavigate('overview'); }}>
-        <Logo />
+        <img className="brand-mark" src={logo} alt="FocusBoard logo" width="64" height="64" />
         <span className="brand-name">Focus<em>Board</em></span>
       </a>
 
@@ -49,5 +57,21 @@ export default function Sidebar({ active, onNavigate, completedCount, weeklyTarg
         <small>{Math.min(completedCount, weeklyTarget)} of {weeklyTarget} tasks completed</small>
       </div>
     </aside>
+
+    <nav className="mobile-nav" aria-label="Sections">
+      {MOBILE_NAV.map(({ id, label, icon: Icon }) => (
+        <button
+          key={id}
+          type="button"
+          className={`mnav-item${active === id ? ' active' : ''}`}
+          aria-current={active === id ? 'page' : undefined}
+          onClick={() => onNavigate(id)}
+        >
+          <Icon aria-hidden="true" strokeWidth={2} />
+          {label}
+        </button>
+      ))}
+    </nav>
+    </>
   );
 }
