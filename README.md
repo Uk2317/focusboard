@@ -148,10 +148,3 @@ focusboard/
 
 ```
 
-## Deployment
-
-Build is static (`dist/`). Vercel: import the repo, framework preset "Vite",
-no env vars. Netlify: build `npm run build`, publish `dist`.
-
-Hosted URL: **[PASTE_YOUR_DEPLOYED_URL_HERE]**
-GitHub repo: **[PASTE_YOUR_REPO_URL_HERE]**
