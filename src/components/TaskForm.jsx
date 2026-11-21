@@ -12,7 +12,7 @@ const EMPTY = {
 };
 
 // Handles both create and edit — parent passes `initial` (a task) or null.
-export default function TaskFormModal({ initial, onClose, onSave }) {
+export default function TaskForm({ initial, onClose, onSave }) {
   const [values, setValues] = useState(() => (initial ? { ...EMPTY, ...initial } : EMPTY));
   const [error, setError] = useState('');
   const titleRef = useRef(null);

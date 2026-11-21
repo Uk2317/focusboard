@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowRight, CheckCircle2, Clock, Layers, Plus } from 'lucide-react';
 import Sidebar from './components/Sidebar';
-import TopBar from './components/TopBar';
+import Header from './components/Header';
 import StatCard from './components/StatCard';
 import FocusNotes from './components/FocusNotes';
-import FilterBar from './components/FilterBar';
+import FilterTabs from './components/FilterTabs';
+import SearchBar from './components/SearchBar';
+import PriorityFilter from './components/PriorityFilter';
 import TaskList from './components/TaskList';
-import TaskFormModal from './components/TaskFormModal';
+import TaskForm from './components/TaskForm';
 import ConfirmDialog from './components/ConfirmDialog';
 import InfoDialog from './components/InfoDialog';
 import MobileNav from './components/MobileNav';
@@ -124,7 +126,7 @@ export default function App() {
       <Sidebar active={activeNav} onNavigate={navigate} completedCount={stats.completed} />
 
       <div className="main-col">
-        <TopBar theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+        <Header theme={theme} onToggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
 
         <main className="page">
           <div id="overview" className="page-head">
@@ -182,15 +184,11 @@ export default function App() {
               </button>
             </div>
 
-            <FilterBar
-              statusTab={statusTab}
-              onStatusTab={setStatusTab}
-              search={search}
-              onSearch={setSearch}
-              priority={priority}
-              onPriority={setPriority}
-              counts={tabCounts}
-            />
+            <div className="controls">
+              <FilterTabs active={statusTab} onChange={setStatusTab} counts={tabCounts} />
+              <SearchBar value={search} onChange={setSearch} />
+              <PriorityFilter value={priority} onChange={setPriority} />
+            </div>
 
             <TaskList
               tasks={visibleTasks}
@@ -206,7 +204,7 @@ export default function App() {
       <MobileNav active={activeNav} onNavigate={navigate} />
 
       {form.open && (
-        <TaskFormModal
+        <TaskForm
           initial={form.initial}
           onClose={() => setForm({ open: false, initial: null })}
           onSave={saveTask}

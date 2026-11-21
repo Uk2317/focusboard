@@ -1,7 +1,7 @@
 import { ChevronRight, Moon, Sun } from 'lucide-react';
 import Logo from './Logo';
 
-export default function TopBar({ theme, onToggleTheme }) {
+export default function Header({ theme, onToggleTheme }) {
   const isDark = theme === 'dark';
 
   return (

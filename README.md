@@ -113,15 +113,22 @@ Manual pass still recommended before submission (see AI_USAGE.md).
 
 ```
 src/
-  components/   Sidebar, TopBar, StatCard, FocusNotes, FilterBar, TaskList,
-                TaskFormModal, ConfirmDialog, InfoDialog, MobileNav, Logo
+  components/   Sidebar, Header, Logo, StatCard, FocusNotes, TaskList,
+                TaskCard, TaskForm, SearchBar, FilterTabs, PriorityFilter,
+                ConfirmDialog, InfoDialog, MobileNav
   data/         sampleTasks.js (seed + status/priority/category constants)
   hooks/        useLocalStorage.js
   lib/          taskMeta.js (labels, due-date math)
+  assets/       logo.svg
   App.jsx       state, derived stats, filters, composition
   index.css     mobile-first styles + dark theme variables
 screenshots/    desktop, tablet, mobile, dark mode, create modal
 ```
+
+Component naming follows the recommended structure from the reference material
+(Sidebar, Header, StatCard, FocusNotes, TaskList, TaskCard, TaskForm, SearchBar,
+FilterTabs) plus the extras the brief requires: PriorityFilter, ConfirmDialog,
+InfoDialog and the mobile MobileNav.
 
 ## Deployment
 
