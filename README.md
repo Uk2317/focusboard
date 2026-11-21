@@ -112,17 +112,40 @@ Manual pass still recommended before submission (see AI_USAGE.md).
 ## Project structure
 
 ```
-src/
-  assets/       logo.svg
-  components/   Sidebar.jsx, Header.jsx, StatCard.jsx, FocusNotes.jsx,
-                TaskList.jsx, TaskCard.jsx, TaskForm.jsx, SearchBar.jsx,
-                FilterTabs.jsx
-  data/         sampleTasks.js
-  hooks/        useLocalStorage.js
-  App.jsx
-  main.jsx
-  index.css
-screenshots/    desktop, tablet, mobile, dark mode, create modal
+focusboard/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── assets/
+│   │   └── logo.svg
+│   ├── components/
+│   │   ├── Sidebar.jsx
+│   │   ├── Header.jsx
+│   │   ├── StatCard.jsx
+│   │   ├── FocusNotes.jsx
+│   │   ├── TaskList.jsx
+│   │   ├── TaskCard.jsx
+│   │   ├── TaskForm.jsx
+│   │   ├── SearchBar.jsx
+│   │   └── FilterTabs.jsx
+│   ├── data/
+│   │   └── sampleTasks.js
+│   ├── hooks/
+│   │   └── useLocalStorage.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── screenshots/
+│   ├── desktop-1440.png
+│   ├── tablet-768.png
+│   ├── mobile-390.png
+│   ├── desktop-dark.png
+│   └── create-modal.png
+├── README.md
+├── AI_USAGE.md
+├── package.json
+└── .gitignore
+
 ```
 
 ## Deployment
