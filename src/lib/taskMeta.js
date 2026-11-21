@@ -1,4 +1,3 @@
-// Small presentation helpers kept out of components so the JSX stays readable.
 
 export const PRIORITY_META = {
   high: { label: 'High', className: 'pill pill-high' },
@@ -27,8 +26,6 @@ export function formatDueDate(isoDate) {
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 }
 
-// "due soon" = not completed and due within 3 days (or already past).
-// Dates compared at midnight so "today" counts as due.
 export function dueState(isoDate, status) {
   if (!isoDate || status === 'completed') return null;
   const today = new Date();

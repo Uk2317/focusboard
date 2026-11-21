@@ -11,7 +11,6 @@ const EMPTY = {
   dueDate: '',
 };
 
-// Handles both create and edit — parent passes `initial` (a task) or null.
 export default function TaskForm({ initial, onClose, onSave }) {
   const [values, setValues] = useState(() => (initial ? { ...EMPTY, ...initial } : EMPTY));
   const [error, setError] = useState('');
@@ -22,7 +21,6 @@ export default function TaskForm({ initial, onClose, onSave }) {
     titleRef.current?.focus();
   }, []);
 
-  // Escape closes; Tab cycles inside the dialog so focus can't escape behind it.
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') {

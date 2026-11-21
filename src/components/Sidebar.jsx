@@ -1,9 +1,6 @@
 import { CalendarDays, LayoutGrid, ListTodo, Settings } from 'lucide-react';
 import Logo from './Logo';
 
-// `active` is controlled by App so the sidebar and the mobile bottom nav
-// stay in sync; `onNavigate` handles both the real sections and the
-// placeholder destinations.
 const NAV = [
   { id: 'overview', label: 'Overview', icon: LayoutGrid },
   { id: 'tasks', label: 'My tasks', icon: ListTodo },

@@ -16,7 +16,6 @@ import useLocalStorage from './hooks/useLocalStorage';
 import { SAMPLE_TASKS } from './data/sampleTasks';
 
 export default function App() {
-  // Task list + theme persist across refreshes via localStorage.
   const [tasks, setTasks] = useLocalStorage('focusboard.tasks', SAMPLE_TASKS);
   const [theme, setTheme] = useLocalStorage('focusboard.theme', 'light');
 
@@ -55,8 +54,6 @@ export default function App() {
     [tasks, stats]
   );
 
-  // Filters combine (search AND status tab AND priority); completed sink to
-  // the bottom and the rest sort by nearest due date.
   const visibleTasks = useMemo(() => {
     const q = search.trim().toLowerCase();
     const filtered = tasks.filter(

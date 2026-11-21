@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Info, X } from 'lucide-react';
 
-// Calendar and Settings aren't part of this build's scope — the brief allows
-// unlinked sections to stay clearly-identified placeholders (see README).
 export default function InfoDialog({ title, onClose }) {
   const okRef = useRef(null);
 

@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { CheckCheck, ChevronLeft, ChevronRight, Rocket } from 'lucide-react';
 
-// Slide copy follows the three Focus Notes frames in the Figma file
-// (15:2, 15:30, 15:58). Keep this list to three — the brief scopes
-// the carousel at exactly three slides.
 const SLIDES = [
   {
     id: 'make-today-count',

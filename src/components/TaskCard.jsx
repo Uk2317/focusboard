@@ -1,7 +1,6 @@
 import { CalendarDays, Check, Pencil, Trash2 } from 'lucide-react';
 import { CATEGORY_CLASS, PRIORITY_META, dueState, formatDueDate } from '../lib/taskMeta';
 
-// One row in the task list. The circle button is the complete/incomplete toggle.
 export default function TaskCard({ task, onToggle, onEdit, onDelete }) {
   const done = task.status === 'completed';
   const priority = PRIORITY_META[task.priority] ?? PRIORITY_META.medium;

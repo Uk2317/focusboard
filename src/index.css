@@ -1,6 +1,3 @@
-/* FocusBoard — mobile-first stylesheet.
-   Base styles target small screens; min-width queries scale up. */
-
 :root {
   --brand: #6d4de7;
   --brand-strong: #5b3ed6;
@@ -93,8 +90,6 @@ button {
   cursor: pointer;
 }
 
-/* ---------- app shell ---------- */
-
 .app-shell {
   min-height: 100vh;
 }
@@ -102,8 +97,6 @@ button {
 .main-col {
   min-width: 0;
 }
-
-/* ---------- sidebar (desktop) ---------- */
 
 .sidebar {
   display: none;
@@ -212,8 +205,6 @@ button {
   transition: width 0.4s ease;
 }
 
-/* ---------- top bar ---------- */
-
 .topbar {
   display: flex;
   align-items: center;
@@ -321,10 +312,8 @@ button {
   height: 30px;
 }
 
-/* ---------- page container ---------- */
-
 .page {
-  padding: 20px 18px 96px; /* room for the mobile bottom nav */
+  padding: 20px 18px 96px;
   max-width: 1180px;
   margin: 0 auto;
 }
@@ -351,8 +340,6 @@ button {
   font-size: 13.5px;
   max-width: 46ch;
 }
-
-/* ---------- buttons ---------- */
 
 .btn {
   display: inline-flex;
@@ -400,8 +387,6 @@ button {
   padding: 9px 14px;
   font-size: 12.5px;
 }
-
-/* ---------- focus notes (carousel) ---------- */
 
 .focus-notes {
   position: relative;
@@ -585,8 +570,6 @@ button {
   background: #fff;
 }
 
-/* ---------- section labels ---------- */
-
 .section-label {
   font-size: 12px;
   font-weight: 700;
@@ -595,8 +578,6 @@ button {
   color: var(--ink-2);
   margin: 26px 2px 12px;
 }
-
-/* ---------- stats ---------- */
 
 .stats-grid {
   display: grid;
@@ -675,8 +656,6 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-/* ---------- my tasks header + controls ---------- */
 
 .tasks-head {
   display: flex;
@@ -818,8 +797,6 @@ button {
   color: var(--ink-2);
   pointer-events: none;
 }
-
-/* ---------- task list ---------- */
 
 .task-list {
   list-style: none;
@@ -1025,8 +1002,6 @@ button {
   font-size: 12.5px;
 }
 
-/* ---------- modal + form ---------- */
-
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1141,8 +1116,6 @@ button {
   margin-top: 16px;
 }
 
-/* ---------- confirm dialog ---------- */
-
 .confirm-icon {
   width: 44px;
   height: 44px;
@@ -1154,8 +1127,6 @@ button {
   justify-content: center;
   margin-bottom: 12px;
 }
-
-/* ---------- toast ---------- */
 
 .toast {
   position: fixed;
@@ -1172,8 +1143,6 @@ button {
   box-shadow: var(--shadow-md);
   max-width: min(92vw, 420px);
 }
-
-/* ---------- mobile bottom nav ---------- */
 
 .mobile-nav {
   position: fixed;
@@ -1210,8 +1179,6 @@ button {
 .mnav-item.active {
   color: var(--brand);
 }
-
-/* ================= breakpoints ================= */
 
 @media (min-width: 620px) {
   .field-row {
@@ -1327,8 +1294,6 @@ button {
     animation-duration: 0.01ms !important;
   }
 }
-
-/* ---------- overall completion meter ---------- */
 
 .completion {
   margin-top: 12px;

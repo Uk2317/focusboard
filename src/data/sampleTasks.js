@@ -1,5 +1,3 @@
-// Seed data used only when localStorage is empty — see App.jsx.
-// Dates are ISO strings so sorting stays a plain string compare.
 export const SAMPLE_TASKS = [
   {
     id: 'task-001',
